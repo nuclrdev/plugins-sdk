@@ -23,4 +23,4 @@ Implement `QuickViewProvider` (or `EditorViewProvider`) to add file preview / ed
 
 ## License
 
-Proprietary
+Apache-2.0
