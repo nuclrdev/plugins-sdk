@@ -10,12 +10,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "id")
 public final class NuclrPlugin {
 
-	private String name;
-
-	private String id;
-
-	private String version;
-
 	private PluginInfo info;
 
 	private final List<ViewProvider> viewProviders = new ArrayList<>();

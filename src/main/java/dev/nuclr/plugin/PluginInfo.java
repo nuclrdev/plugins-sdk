@@ -5,6 +5,12 @@ import lombok.Data;
 @Data
 public final class PluginInfo {
 
+	private String name;
+
+	private String id;
+
+	private String version;
+
 	private String description;
 
 	private String author;
@@ -15,7 +21,7 @@ public final class PluginInfo {
 
 	private String pageUrl;
 
-	private String documentationUrl;
+	private String docUrl;
 
 	private PluginType type;
 
