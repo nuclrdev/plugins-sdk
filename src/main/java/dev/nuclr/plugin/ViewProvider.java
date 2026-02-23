@@ -1,5 +1,7 @@
 package dev.nuclr.plugin;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import javax.swing.JComponent;
 
 public interface ViewProvider {
@@ -14,7 +16,7 @@ public interface ViewProvider {
 	JComponent getPanel();
 
 	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
-	boolean open(QuickViewItem item);
+	boolean open(QuickViewItem item, AtomicBoolean cancelled);
 
 	/** Close current item/session (stop playback, cancel background tasks). */
 	void close();
