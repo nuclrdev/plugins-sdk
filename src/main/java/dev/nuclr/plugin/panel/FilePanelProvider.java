@@ -1,5 +1,6 @@
 package dev.nuclr.plugin.panel;
 
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -43,6 +44,36 @@ public interface FilePanelProvider {
      * (e.g. an SFTP plugin with no configured servers).
      */
     List<PanelRoot> roots();
+
+    /**
+     * Returns {@code true} if this provider owns the given path and can service
+     * provider-specific operations for it.
+     */
+    default boolean supportsPath(Path path) {
+        return false;
+    }
+
+    /**
+     * Returns {@code null} when the provider can copy the supplied items into the
+     * target directory. Otherwise returns a user-facing reason why the copy should
+     * be aborted.
+     */
+    default String validateCopy(List<Path> items, Path targetDirectory) {
+        return "Copy is not supported by provider: " + displayName();
+    }
+
+    /**
+     * Copies the given items into {@code targetDirectory} using the supplied
+     * options. Implementations are expected to honor cancellation requests from
+     * {@code progress}.
+     */
+    default CopyResult copy(
+            List<Path> items,
+            Path targetDirectory,
+            CopyOptions options,
+            CopyProgress progress) {
+        return CopyResult.notSupported("Copy is not supported by provider: " + displayName());
+    }
 
     /**
      * Sort priority used when displaying roots from multiple providers.

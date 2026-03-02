@@ -39,7 +39,9 @@ public record Capabilities(
      */
     public static Capabilities zipArchive() {
         return new Capabilities(
-                EnumSet.of(Operation.LIST, Operation.READ, Operation.DELETE, Operation.CREATE_DIRECTORY),
+                EnumSet.of(
+                        Operation.LIST, Operation.READ, Operation.WRITE, Operation.COPY,
+                        Operation.DELETE, Operation.CREATE_DIRECTORY),
                 false, false, false, false);
     }
 
