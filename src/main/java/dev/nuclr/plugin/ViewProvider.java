@@ -15,6 +15,10 @@ public interface ViewProvider {
 	/** UI component for this provider instance. */
 	JComponent getPanel();
 
+	/** Applies the current host theme before or after panel creation. */
+	default void applyTheme(PluginTheme theme) {
+	}
+
 	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
 	boolean open(QuickViewItem item, AtomicBoolean cancelled);
 
