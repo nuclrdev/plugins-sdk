@@ -22,6 +22,10 @@ public interface ScreenProvider {
 	default void close() {
 	}
 
+	/** Request focus for provider's primary interactive control. */
+	default void focus() {
+	}
+
 	/** True when current screen content has unsaved changes. */
 	default boolean isDirty() {
 		return false;
