@@ -22,6 +22,20 @@ public interface ScreenProvider {
 	default void close() {
 	}
 
+	/** True when current screen content has unsaved changes. */
+	default boolean isDirty() {
+		return false;
+	}
+
+	/**
+	 * Saves current content.
+	 *
+	 * @return true when data was persisted successfully
+	 */
+	default boolean save() throws Exception {
+		return false;
+	}
+
 	/** Called when plugin is unloaded. */
 	default void unload() {
 	}
