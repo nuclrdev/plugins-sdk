@@ -14,8 +14,11 @@ public final class NuclrPlugin {
 
 	private final List<ViewProvider> viewProviders = new ArrayList<>();
 
+	private final List<ScreenProvider> screenProviders = new ArrayList<>();
+
 	public void unload() {
 		viewProviders.forEach(ViewProvider::unload);
+		screenProviders.forEach(ScreenProvider::unload);
 	}
 
 }
