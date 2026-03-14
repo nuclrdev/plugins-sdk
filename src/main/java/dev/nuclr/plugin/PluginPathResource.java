@@ -10,19 +10,18 @@ import lombok.Data;
 @Data
 public abstract class PluginPathResource {
 
-	private Map<String, String> metadata = new HashMap<>();
+	protected Map<String, String> metadata = new HashMap<>();
 
-	private String uuid;
+	protected String uuid;
 
-	private String name;
+	protected String name;
 
-	private long sizeBytes;
+	protected long sizeBytes;
 
-	private String extension;
+	protected String extension;
 
-	private String mimeType; // optional, can be null
+	protected String mimeType; // optional, can be null
 
 	public abstract InputStream openStream() throws Exception;
 
-	private Path path; // optional, can be null
 }
