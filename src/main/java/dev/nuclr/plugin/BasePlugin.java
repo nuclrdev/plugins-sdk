@@ -6,8 +6,6 @@ import javax.swing.JComponent;
 
 public interface BasePlugin {
 
-	PluginInfo getPluginInfo();
-
 	JComponent getPanel();
 	
 	/** Return menu items for the given resource, or null/empty if none. */
@@ -17,5 +15,7 @@ public interface BasePlugin {
 	
 	/** Plugin unload: release global resources. Provider will not be used again. */
 	void unload();
+
+	PluginManifest getPluginInfo();
 	
 }
