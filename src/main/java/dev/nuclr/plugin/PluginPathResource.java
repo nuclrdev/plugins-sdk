@@ -21,8 +21,18 @@ public class PluginPathResource {
 	protected String extension;
 
 	protected String mimeType; // optional, can be null
-	
+
 	protected Path path; // optional
+
+	public String getExtension() {
+		return extension != null ? extension : path != null ? extensionFromPath() : "";
+	}
+
+	private String extensionFromPath() {
+		return path.getFileName().toString().contains(".")
+				? path.getFileName().toString().substring(path.getFileName().toString().lastIndexOf('.') + 1)
+				: "";
+	}
 
 	public InputStream openStream() throws Exception {
 		if (path != null) {
