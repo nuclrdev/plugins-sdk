@@ -9,5 +9,7 @@ public interface PanelProviderPlugin extends BasePlugin, FocusablePlugin {
 
 	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
 	boolean openItem(PluginPathResource resource, AtomicBoolean cancelled);
+	
+	boolean canSupport(PluginPathResource resource);
 
 }
