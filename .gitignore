@@ -18,3 +18,5 @@ buildNumber.properties
 .factorypath
 /.settings
 deploy.bat
+maven-central-deploy.bat
+install.bat

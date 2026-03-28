@@ -109,9 +109,11 @@
 							<goal>sign</goal>
 						</goals>
 						<configuration>
-							<gpgArguments>
-								<arg>--pinentry-mode</arg>
-								<arg>loopback</arg>
+						    <executable>C:\Program Files\GnuPG\bin\gpg.exe</executable>
+								<gpgArguments>
+				                    <arg>--batch</arg>
+				                    <arg>--pinentry-mode</arg>
+				                    <arg>loopback</arg>
 							</gpgArguments>
 						</configuration>
 					</execution>
