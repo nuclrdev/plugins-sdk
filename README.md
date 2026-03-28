@@ -1,26 +1,38 @@
-# Nuclr Commander — Plugin SDK
+# Nuclr Commander - Plugin SDK 🔌
 
 Plugin development SDK for [Nuclr Commander](https://github.com/nicholasgasior/nuclr-commander), a cross-platform dual-pane file manager.
 
-> **Note:** This project is under active development. APIs may change without notice.
+> **Note:** This project is under active development. APIs may change without notice. 🚧
 
-## Requirements
+## Requirements ✅
 
 - Java 21+
 - Maven 3.9+
 
-## Build
+## Build 🛠️
 
 ```bash
 mvn clean install
 ```
 
-This installs the SDK to your local Maven repository so plugins can depend on it.
+This builds the SDK from source.
 
-## Usage
+## Maven Central 📦
 
-Implement `QuickViewProvider` (or `EditorViewProvider`) to add file preview / editing support for new formats. Package your plugin as a signed ZIP with a `plugin.json` manifest — see the core plugins for a working example.
+The SDK is published to Maven Central and can be added directly to your plugin project:
 
-## License
+```xml
+<dependency>
+    <groupId>dev.nuclr</groupId>
+    <artifactId>plugins-sdk</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+## Usage 🚀
+
+Implement `QuickViewProvider` (or `EditorViewProvider`) to add file preview / editing support for new formats. Package your plugin as a signed ZIP with a `plugin.json` manifest - see the core plugins for a working example.
+
+## License 📄
 
 Apache-2.0
