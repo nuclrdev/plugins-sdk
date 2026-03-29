@@ -1,4 +1,4 @@
-package dev.nuclr.platform.settings;
+package dev.nuclr.platform;
 
 public interface Settings {
 

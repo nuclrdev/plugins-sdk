@@ -4,8 +4,8 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dev.nuclr.platform.Settings;
 import dev.nuclr.platform.events.NuclrEventBus;
-import dev.nuclr.platform.settings.Settings;
 
 public interface NuclrPluginContext {
 

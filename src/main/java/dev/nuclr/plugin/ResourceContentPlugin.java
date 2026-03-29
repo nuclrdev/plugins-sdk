@@ -7,35 +7,35 @@ import javax.swing.JComponent;
 
 import dev.nuclr.platform.plugin.NuclrPluginContext;
 
-public interface BasePlugin {
+public interface ResourceContentPlugin {
 
-	PluginManifest getPluginManifest();
+	PluginManifest manifest();
 
-	List<PluginPathResource> getChangeDriveResources();
+	default List<PluginPathResource> getChangeDriveResources() {
+		return null;
+	}
 
-	JComponent getPanel();
+	JComponent panel();
 
 	boolean supports(PluginPathResource resource);
 
 	/** Return menu items for the given resource, or null/empty if none. */
-	List<MenuResource> getMenuItems(PluginPathResource source);
+	default List<MenuResource> menuItems(PluginPathResource resource) {
+		return null;
+	}
 
 	void load(NuclrPluginContext context);
 
 	/** Plugin unload: release global resources. Provider will not be used again. */
 	void unload();
 
-	void onFocusGained();
-
-	void onFocusLost();
-
 	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
-	boolean openItem(PluginPathResource resource, AtomicBoolean cancelled);
-	
+	boolean openResource(PluginPathResource resource, AtomicBoolean cancelled);
+
 	/** Close current item/session (stop playback, cancel background tasks). */
-	void closeItem();
-	
+	void closeResource();
+
 	/** lower priority providers are preferred when multiple match the same item */
-	int getPriority();
+	int priority();
 
 }
