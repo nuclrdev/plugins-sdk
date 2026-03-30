@@ -9,8 +9,6 @@ import dev.nuclr.platform.plugin.NuclrPluginContext;
 
 public interface ResourceContentPlugin {
 
-	PluginManifest manifest();
-
 	default List<PluginPathResource> getChangeDriveResources() {
 		return null;
 	}
