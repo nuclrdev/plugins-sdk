@@ -1,38 +1,73 @@
-# Nuclr Commander - Plugin SDK 🔌
+# Nuclr Commander Platform SDK
 
-Plugin development SDK for [Nuclr Commander](https://github.com/nicholasgasior/nuclr-commander), a cross-platform dual-pane file manager.
+Java SDK for building plugins for [Nuclr Commander](https://github.com/nuclrdev/nuclr-commander), a cross-platform dual-pane file manager.
 
-> **Note:** This project is under active development. APIs may change without notice. 🚧
+This repository publishes the `dev.nuclr:platform-sdk` artifact used by Nuclr Commander plugins and is available from Maven Central.
 
-## Requirements ✅
+## Requirements
 
 - Java 21+
 - Maven 3.9+
 
-## Build 🛠️
+## Build
+
+For a normal local build:
 
 ```bash
-mvn clean install
+mvn -DskipTests compile
 ```
 
-This builds the SDK from source.
+For a packaged build without GPG signing:
 
-## Maven Central 📦
+```bash
+mvn -DskipTests -Dgpg.skip=true package
+```
 
-The SDK is published to Maven Central and can be added directly to your plugin project:
+Publishing builds use GPG signing and the Sonatype Central publishing plugin configured in [pom.xml](/C:/nuclr/sources/platform-sdk/pom.xml).
+
+## Maven Dependency
+
+Add the SDK to your plugin project:
 
 ```xml
 <dependency>
     <groupId>dev.nuclr</groupId>
-    <artifactId>plugins-sdk</artifactId>
-    <version>1.0.0</version>
+    <artifactId>platform-sdk</artifactId>
+    <version>2.0.1</version>
 </dependency>
 ```
 
-## Usage 🚀
+## What The SDK Provides
 
-Implement `QuickViewProvider` (or `EditorViewProvider`) to add file preview / editing support for new formats. Package your plugin as a signed ZIP with a `plugin.json` manifest - see the core plugins for a working example.
+- `@NuclrPlugin` to mark plugin entry points
+- `ResourceContentPlugin` for content viewers and editors
+- `NuclrPluginContext` for access to the event bus, settings, theme data, config, and Jackson `ObjectMapper`
+- `PluginPathResource` and `MenuResource` model types used by plugins
 
-## License 📄
+## Plugin Shape
+
+Typical plugins implement `dev.nuclr.plugin.ResourceContentPlugin`, expose a Swing `JComponent` via `panel()`, and handle file/resource lifecycle through:
+
+- `load(...)`
+- `openResource(...)`
+- `closeResource()`
+- `unload()`
+
+Plugins can also contribute resource-specific menu items and custom resources for drive or provider views.
+
+## Minimal Example
+
+```java
+@NuclrPlugin
+public final class MyPlugin implements ResourceContentPlugin {
+
+    // Implement panel(), supports(...), load(...), openResource(...),
+    // closeResource(), unload(), and priority().
+}
+```
+
+Commander discovers plugin metadata from `plugin.json`. Package that manifest together with your plugin classes and any runtime dependencies required by the plugin.
+
+## License
 
 Apache-2.0
