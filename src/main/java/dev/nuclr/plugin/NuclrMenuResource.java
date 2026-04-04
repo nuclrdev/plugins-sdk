@@ -25,6 +25,14 @@ public abstract class NuclrMenuResource {
 
 	public abstract String getEventType();
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setKeyStroke(String keyStroke) {
+		this.keyStroke = keyStroke;
+	}
+
 	public String getName() {
 		return name;
 	}
