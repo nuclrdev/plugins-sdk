@@ -15,14 +15,22 @@
 	limitations under the License.
 
  */
-package dev.nuclr.platform.events;
+package dev.nuclr.plugin;
 
-import java.util.Map;
+public abstract class NuclrMenuResource {
 
-public interface NuclrEventListener {
+	protected String name;
 
-	void handleMessage(String type, Map<String, Object> event);
+	protected String keyStroke;
 
-	boolean isMessageSupported(String type);
-	
+	public abstract String getEventType();
+
+	public String getName() {
+		return name;
+	}
+
+	public String getKeyStroke() {
+		return keyStroke;
+	}
+
 }

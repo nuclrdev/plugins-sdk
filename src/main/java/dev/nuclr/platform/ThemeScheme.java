@@ -15,14 +15,22 @@
 	limitations under the License.
 
  */
-package dev.nuclr.platform.events;
+package dev.nuclr.platform;
 
 import java.util.Map;
 
-public interface NuclrEventListener {
+/**
+ * JSON-backed Swing/FlatLaf override palette.
+ *
+ * <p>Keys are UIManager defaults (for example {@code "Panel.background"}).
+ * Values are CSS-style hex colors (for example {@code "#102a43"}).
+ */
+public record ThemeScheme(
+		String name,
+		Map<String, String> uiDefaults) {
 
-	void handleMessage(String type, Map<String, Object> event);
-
-	boolean isMessageSupported(String type);
-	
+	public ThemeScheme {
+		name = name != null && !name.isBlank() ? name : "Unnamed";
+		uiDefaults = uiDefaults != null ? Map.copyOf(uiDefaults) : Map.of();
+	}
 }
