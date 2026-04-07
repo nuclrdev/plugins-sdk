@@ -35,7 +35,8 @@ public interface NuclrPlugin {
 		return List.of();
 	}
 	
-	void onFocusGained();
+	/** Return true if the component accepts focus */
+	boolean onFocusGained();
 
 	String id();
 
