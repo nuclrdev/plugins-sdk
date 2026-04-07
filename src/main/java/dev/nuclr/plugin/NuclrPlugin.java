@@ -34,6 +34,8 @@ public interface NuclrPlugin {
 	default List<NuclrResourcePath> getChangeDriveResources() {
 		return List.of();
 	}
+	
+	void onFocusGained();
 
 	String id();
 
