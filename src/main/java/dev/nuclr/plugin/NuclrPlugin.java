@@ -38,6 +38,10 @@ public interface NuclrPlugin {
 	/** Return true if the component accepts focus */
 	boolean onFocusGained();
 
+	void onFocusLost();
+	
+	boolean isFocused();
+
 	String id();
 
 	String name();
