@@ -25,4 +25,6 @@ public interface Settings {
 
 	<T> T getOrDefault(String namespace, String key, T defaultValue);
 
+	boolean isDeveloperModeOn();
+
 }
