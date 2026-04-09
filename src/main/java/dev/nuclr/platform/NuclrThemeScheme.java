@@ -24,6 +24,8 @@ import java.util.Map;
 
 import javax.swing.UIManager;
 
+import lombok.Data;
+
 /**
  * JSON-backed Swing/FlatLaf override palette.
  *
@@ -31,6 +33,7 @@ import javax.swing.UIManager;
  * Keys are UIManager defaults (for example {@code "Panel.background"}). Values
  * are CSS-style hex colors (for example {@code "#102a43"}).
  */
+@Data
 public class NuclrThemeScheme {
 
 	private String name;
@@ -40,6 +43,11 @@ public class NuclrThemeScheme {
 	public NuclrThemeScheme() {
 		name = name != null && !name.isBlank() ? name : "Unnamed";
 		uiDefaults = uiDefaults != null ? Map.copyOf(uiDefaults) : Map.of();
+	}
+	
+	public NuclrThemeScheme(String name, Map<String, String> uiDefaults) {
+		this.name = name != null && !name.isBlank() ? name : "Unnamed";
+		this.uiDefaults = uiDefaults != null ? Map.copyOf(uiDefaults) : Map.of();
 	}
 
 	public Color color(String string, Color defaultColor) {
