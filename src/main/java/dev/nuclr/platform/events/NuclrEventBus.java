@@ -21,7 +21,7 @@ import java.util.Map;
 
 public interface NuclrEventBus {
 
-	void emit(String source, String type, Map<String, Object> event);
+	void emit(Object source, String type, Map<String, Object> event);
 	
 	void emit(String type, Map<String, Object> event);
 	

@@ -71,7 +71,7 @@ public interface NuclrPlugin {
 		return List.of();
 	}
 
-	void load(NuclrPluginContext context);
+	void load(NuclrPluginContext context, boolean isTemplate);
 
 	/** Plugin unload: release global resources. Provider will not be used again. */
 	void unload();

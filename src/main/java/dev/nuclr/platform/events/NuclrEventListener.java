@@ -21,7 +21,7 @@ import java.util.Map;
 
 public interface NuclrEventListener {
 
-	void handleMessage(String source, String type, Map<String, Object> event);
+	void handleMessage(Object source, String type, Map<String, Object> event);
 
 	boolean isMessageSupported(String type);
 	
