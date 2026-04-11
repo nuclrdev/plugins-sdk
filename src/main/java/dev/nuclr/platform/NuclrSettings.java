@@ -15,20 +15,16 @@
 	limitations under the License.
 
  */
-package dev.nuclr.platform.events;
+package dev.nuclr.platform;
 
-import java.util.Map;
+public interface NuclrSettings {
 
-public interface NuclrEventBus {
+	void set(String namespace, String key, Object value);
 
-	void emit(Object source, String type, Map<String, Object> event);
-	
-	void emit(String type, Map<String, Object> event);
-	
-	void emit(String type);
+	<T> T get(String namespace, String key);
 
-	void subscribe(NuclrEventListener listener);
+	<T> T getOrDefault(String namespace, String key, T defaultValue);
 
-	void unsubscribe(NuclrEventListener listener);
+	boolean isDeveloperModeOn();
 
 }

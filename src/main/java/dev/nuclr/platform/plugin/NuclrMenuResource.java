@@ -15,20 +15,30 @@
 	limitations under the License.
 
  */
-package dev.nuclr.platform.events;
+package dev.nuclr.platform.plugin;
 
-import java.util.Map;
+public abstract class NuclrMenuResource {
 
-public interface NuclrEventBus {
+	protected String name;
 
-	void emit(Object source, String type, Map<String, Object> event);
-	
-	void emit(String type, Map<String, Object> event);
-	
-	void emit(String type);
+	protected String keyStroke;
 
-	void subscribe(NuclrEventListener listener);
+	public abstract String getEventType();
 
-	void unsubscribe(NuclrEventListener listener);
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setKeyStroke(String keyStroke) {
+		this.keyStroke = keyStroke;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getKeyStroke() {
+		return keyStroke;
+	}
 
 }

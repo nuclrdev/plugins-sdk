@@ -1,22 +1,15 @@
 package dev.nuclr.platform.plugin;
 
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import dev.nuclr.platform.Settings;
+import dev.nuclr.platform.NuclrSettings;
+import dev.nuclr.platform.NuclrThemeScheme;
 import dev.nuclr.platform.events.NuclrEventBus;
 
 public interface NuclrPluginContext {
 
 	NuclrEventBus getEventBus();
-	
-	Map<String, Object> getGlobalConfig();
-	
-	ObjectMapper getObjectMapper();
-	
-	Map<String, Object> getTheme();
-	
-	Settings getSettings();
-	
+
+	NuclrThemeScheme getTheme();
+
+	NuclrSettings getSettings();
+
 }
