@@ -65,6 +65,8 @@ public interface NuclrPlugin {
 	JComponent panel();
 
 	boolean supports(NuclrResourcePath resource);
+	
+	NuclrPluginRole role();
 
 	/** Return menu items for the given resource, or null/empty if none. */
 	default List<NuclrMenuResource> menuItems(NuclrResourcePath resource) {
