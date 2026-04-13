@@ -47,6 +47,11 @@ public class NuclrResourcePath {
 	}
 
 	private String extensionFromPath() {
+		
+		if (path == null || path.getFileName() == null) {
+			return "";
+		}
+		
 		return path.getFileName().toString().contains(".")
 				? path.getFileName().toString().substring(path.getFileName().toString().lastIndexOf('.') + 1)
 				: "";
