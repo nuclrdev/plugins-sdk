@@ -33,14 +33,14 @@ public interface NuclrPlugin {
 	default List<NuclrResourcePath> getChangeDriveResources() {
 		return List.of();
 	}
-	
+
 	/** Return true if the component accepts focus */
 	boolean onFocusGained();
 
 	void onFocusLost();
-	
+
 	boolean isFocused();
-	
+
 	String id();
 
 	String name();
@@ -65,7 +65,7 @@ public interface NuclrPlugin {
 	JComponent panel();
 
 	boolean supports(NuclrResourcePath resource);
-	
+
 	NuclrPluginRole role();
 
 	/** Return menu items for the given resource, or null/empty if none. */
@@ -84,6 +84,9 @@ public interface NuclrPlugin {
 	/** Close current item/session (stop playback, cancel background tasks). */
 	void closeResource();
 
+	/** Return the currently open item, or null if none. */
+	NuclrResourcePath getCurrentResource();
+
 	/** lower priority providers are preferred when multiple match the same item */
 	int priority();
 
@@ -101,5 +104,8 @@ public interface NuclrPlugin {
 	default boolean singleton() {
 		return true;
 	}
+	
+	/** This is the unique identifier for this plugin instanceFor non-singleton plugins, this should return a unique value (e.g. a random UUID). */
+	String uuid();
 
 }
