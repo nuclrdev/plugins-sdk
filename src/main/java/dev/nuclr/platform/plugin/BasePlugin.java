@@ -14,32 +14,16 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 
- */
+*/
 package dev.nuclr.platform.plugin;
-
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import javax.swing.JComponent;
 
 import dev.nuclr.platform.NuclrThemeScheme;
 
-public interface NuclrPlugin {
+public sealed interface BasePlugin permits QuickViewNuclrPlugin, FilePanelNuclrPlugin {
 
 	public static enum Developer {
 		Official, Community
 	}
-
-	default List<NuclrResourcePath> getChangeDriveResources() {
-		return List.of();
-	}
-
-	/** Return true if the component accepts focus */
-	boolean onFocusGained();
-
-	void onFocusLost();
-
-	boolean isFocused();
 
 	String id();
 
@@ -61,35 +45,18 @@ public interface NuclrPlugin {
 	String docUrl();
 
 	Developer type();
+	
+	/** Return true if the component accepts focus */
+	boolean onFocusGained();
 
-	JComponent panel();
+	void onFocusLost();
 
-	boolean supports(NuclrResourcePath resource);
-
-	NuclrPluginRole role();
-
-	/** Return menu items for the given resource, or null/empty if none. */
-	default List<NuclrMenuResource> menuItems(NuclrResourcePath resource) {
-		return List.of();
-	}
-
-	void load(NuclrPluginContext context, boolean isTemplate);
-
-	/** Plugin unload: release global resources. Provider will not be used again. */
-	void unload();
-
-	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
-	boolean openResource(NuclrResourcePath resource, AtomicBoolean cancelled);
-
-	/** Close current item/session (stop playback, cancel background tasks). */
-	void closeResource();
-
-	/** Return the currently open item, or null if none. */
-	NuclrResourcePath getCurrentResource();
-
-	/** lower priority providers are preferred when multiple match the same item */
-	int priority();
-
+	boolean isFocused();
+	
+	void preinit(NuclrPluginContext context);
+	
+	void init();
+	
 	/**
 	 * Called when the user changes the theme. Plugin should update its colors
 	 * accordingly.
@@ -105,7 +72,14 @@ public interface NuclrPlugin {
 		return true;
 	}
 	
-	/** This is the unique identifier for this plugin instanceFor non-singleton plugins, this should return a unique value (e.g. a random UUID). */
+	/**
+	 * This is the unique identifier for this plugin instanceFor non-singleton
+	 * plugins, this should return a unique value (e.g. a random UUID).
+	 */
 	String uuid();
+	
 
+	/** Plugin unload: release global resources. Provider will not be used again. */
+	void unload();
+	
 }

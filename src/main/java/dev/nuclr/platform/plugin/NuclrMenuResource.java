@@ -17,28 +17,15 @@
  */
 package dev.nuclr.platform.plugin;
 
-public abstract class NuclrMenuResource {
+import lombok.Data;
 
-	protected String name;
+@Data
+public class NuclrMenuResource {
 
-	protected String keyStroke;
+	private String name;
 
-	public abstract String getEventType();
+	private String functionKey;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setKeyStroke(String keyStroke) {
-		this.keyStroke = keyStroke;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getKeyStroke() {
-		return keyStroke;
-	}
+	private String eventType;
 
 }
