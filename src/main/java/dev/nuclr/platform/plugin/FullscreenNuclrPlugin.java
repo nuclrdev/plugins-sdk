@@ -14,22 +14,21 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 
- */
+*/
 package dev.nuclr.platform.plugin;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public non-sealed interface FullscreenNuclrPlugin extends BasePlugin {
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class NuclrMenuResource {
+	/**
+	 * Return the plugin's role: viewer (read-only) or editor (can modify files).
+	 */
+	public static enum Role {
+		Viewer, Editor
+	}
 
-	private String name;
-
-	private String functionKey;
-
-	private String eventType;
+	/**
+	 * Return the plugin's role: viewer (read-only) or editor (can modify files).
+	 */
+	Role role();
 
 }

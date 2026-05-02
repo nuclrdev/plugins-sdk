@@ -17,9 +17,11 @@
 */
 package dev.nuclr.platform.plugin;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import dev.nuclr.platform.NuclrThemeScheme;
 
-public sealed interface BasePlugin permits QuickViewNuclrPlugin, FilePanelNuclrPlugin {
+public sealed interface BasePlugin permits QuickViewNuclrPlugin, FilePanelNuclrPlugin, FullscreenNuclrPlugin {
 
 	public static enum Developer {
 		Official, Community
@@ -45,23 +47,25 @@ public sealed interface BasePlugin permits QuickViewNuclrPlugin, FilePanelNuclrP
 	String docUrl();
 
 	Developer type();
-	
+
 	/** Return true if the component accepts focus */
 	boolean onFocusGained();
 
 	void onFocusLost();
 
 	boolean isFocused();
-	
+
 	void preinit(NuclrPluginContext context);
-	
+
 	void init();
-	
+
 	/**
 	 * Called when the user changes the theme. Plugin should update its colors
 	 * accordingly.
 	 */
-	void updateTheme(NuclrThemeScheme themeScheme);
+	default void updateTheme(NuclrThemeScheme themeScheme) {
+		// default implementation does nothing, plugins can override if needed
+	}
 
 	/**
 	 * Return true if this plugin should only have one instance (e.g. a single
@@ -71,15 +75,20 @@ public sealed interface BasePlugin permits QuickViewNuclrPlugin, FilePanelNuclrP
 	default boolean singleton() {
 		return true;
 	}
-	
+
 	/**
 	 * This is the unique identifier for this plugin instanceFor non-singleton
 	 * plugins, this should return a unique value (e.g. a random UUID).
 	 */
 	String uuid();
-	
 
 	/** Plugin unload: release global resources. Provider will not be used again. */
 	void unload();
-	
+
+	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
+	boolean openResource(NuclrResourcePath resource, AtomicBoolean cancelled);
+
+	/** Return the currently open item, or null if none. */
+	NuclrResourcePath getCurrentResource();
+
 }

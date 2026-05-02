@@ -17,8 +17,6 @@
  */
 package dev.nuclr.platform.plugin;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import javax.swing.JComponent;
 
 public non-sealed interface QuickViewNuclrPlugin extends BasePlugin {
@@ -31,11 +29,5 @@ public non-sealed interface QuickViewNuclrPlugin extends BasePlugin {
 
 	/** lower priority providers are preferred when multiple match the same item */
 	int priority();
-
-	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
-	boolean openResource(NuclrResourcePath resource, AtomicBoolean cancelled);
-
-	/** Return the currently open item, or null if none. */
-	NuclrResourcePath getCurrentResource();
 
 }

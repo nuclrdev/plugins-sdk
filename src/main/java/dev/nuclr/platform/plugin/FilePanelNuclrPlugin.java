@@ -18,18 +18,10 @@
 package dev.nuclr.platform.plugin;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import lombok.Data;
 
 public non-sealed interface FilePanelNuclrPlugin extends BasePlugin {
-
-	/**
-	 * Return the plugin's role: viewer (read-only) or editor (can modify files).
-	 */
-	public static enum Role {
-		Viewer, Editor
-	}
 
 	@Data
 	public static class PluginRoot {
@@ -45,17 +37,9 @@ public non-sealed interface FilePanelNuclrPlugin extends BasePlugin {
 	 */
 	List<PluginRoot> getPluginRoots();
 
-	/**
-	 * Return the plugin's role: viewer (read-only) or editor (can modify files).
-	 */
-	Role role();
-
 	/** Return menu items for the given resource, or null/empty if none. */
 	default List<NuclrMenuResource> menuItems(NuclrResourcePath resource) {
 		return List.of();
 	}
-
-	/** Open/refresh view for the item (do heavy work async, update UI on EDT). */
-	boolean openResource(NuclrResourcePath resource, AtomicBoolean cancelled);
 
 }
